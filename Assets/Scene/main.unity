@@ -214,11 +214,11 @@ GameObject:
   m_Component:
   - component: {fileID: 888225411}
   - component: {fileID: 888225410}
-  - component: {fileID: 888225409}
   - component: {fileID: 888225412}
   - component: {fileID: 888225413}
+  - component: {fileID: 888225409}
   m_Layer: 0
-  m_Name: MC
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,9 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391d9873e0e15f541887b41e35081e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  moveSpeed: 0
   smooth: 2
-  tiltAngle: 30
+  turnSpeed: 30
 --- !u!212 &888225410
 SpriteRenderer:
   m_ObjectHideFlags: 0
