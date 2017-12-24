@@ -5,36 +5,36 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float moveSpeed;
-    public float smooth = 2.0F;
-    public float turnSpeed = 30.0F;
+    public float turnSpeed = 0.05F;
+    public float maxTurnDelta = 0.05f;
 
     private Rigidbody2D rd2d;
+    private float currentAngle;
 
     void Start()
     {
         rd2d = GetComponent<Rigidbody2D>();
+        currentAngle = 0;
     }
 
     void FixedUpdate()
     {
-        /*
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-        rd2d.AddForce(movement * speed); */
+        // move forward
+        transform.position += moveSpeed * transform.up * Time.fixedDeltaTime;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.AngleAxis(currentAngle, Vector3.forward), maxTurnDelta);
+    }
 
+    void Update()
+    {
+        UpdateInput();
+    }
 
-        //Rotate
-        /*float tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
-        Quaternion target = Quaternion.Euler(0, 0, tiltAroundZ);
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);*/
-
-        
-       
+    void UpdateInput() 
+    {
         if (Input.GetKey(KeyCode.LeftArrow))
-            transform.Rotate(Vector3.forward, turnSpeed * Time.deltaTime);
+            currentAngle += turnSpeed;
 
         if (Input.GetKey(KeyCode.RightArrow))
-            transform.Rotate(Vector3.back, turnSpeed * Time.deltaTime);
+            currentAngle -= turnSpeed;
     }
 }
