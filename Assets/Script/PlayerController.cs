@@ -8,12 +8,12 @@ public class PlayerController : MonoBehaviour {
     public float turnSpeed = 0.05F;
     public float maxTurnDelta = 0.05f;
 
-    private Rigidbody2D rd2d;
+    //private Rigidbody2D rd2d;
     private float currentAngle;
 
     void Start()
     {
-        rd2d = GetComponent<Rigidbody2D>();
+        //rd2d = GetComponent<Rigidbody2D>();
         currentAngle = 0;
     }
 
@@ -27,14 +27,11 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
         UpdateInput();
+        
     }
-
+   
     void UpdateInput() 
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
-            currentAngle += turnSpeed;
-
-        if (Input.GetKey(KeyCode.RightArrow))
-            currentAngle -= turnSpeed;
+        currentAngle -= Input.GetAxis("Horizontal") * turnSpeed;
     }
 }
